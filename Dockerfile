@@ -1,12 +1,19 @@
 FROM debian:latest
 MAINTAINER Martin -nexus- Mlynář <nextsux+github@gmail.com>
+
+ENV VERSION=1.25.0-dev.6.0
+ENV DIRVERSION=1.25.0-dev.6.0.0
+ENV DISPLAY=:0
+
 VOLUME ["/tmp/.X11-unix"]
 
 RUN apt-get update && apt-get install -y chromium wget unzip libgconf-2-4 libexif12 xterm
-RUN useradd -m user1000 -u 1000
-USER 1000
-WORKDIR /home/user1000/
-RUN wget https://storage.googleapis.com/dart-archive/channels/stable/release/latest/dartium/dartium-linux-x64-release.zip && unzip ./dartium-linux-x64-release.zip
-WORKDIR /home/user1000/dartium-linux-x64-stable-1.24.2.0/
+WORKDIR /opt/
+RUN wget https://storage.googleapis.com/dart-archive/channels/dev/release/$VERSION/dartium/dartium-linux-x64-release.zip -O dartium.zip
+RUN unzip ./dartium.zip && mv /opt/dartium-linux-x64-dev-$DIRVERSION /opt/dartium
 
-CMD ["./chrome"]
+RUN useradd -m user -u 1000
+USER 1000
+WORKDIR /home/user/
+
+CMD ["/opt/dartium/chrome"]
