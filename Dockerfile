@@ -16,4 +16,5 @@ RUN useradd -m user -u 1000
 USER 1000
 WORKDIR /home/user/
 
+ENV DART_FLAGS='--checked'
 CMD ["/opt/dartium/chrome"]
