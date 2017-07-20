@@ -1,12 +1,10 @@
-Uzivatel musi mit zatim **UID 1000 ($ id)**
+Spusteni
+========
+  - funkcni docker jako uzivatel
+  - staci spusti dartium.sh, vse by si mel zjisti a spustit
+  - otevre stranku na localhoste (ip dockeru):8080
 
-spousti se
-
-```
-$ docker run -ti --rm --shm-size 4G -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix registry.smoula.net/nexus/dartium-browser:latest
-```
-
-pub serve je potreba otevrit mimo localhost a mit povoleny port 8080 v iptables. Pak uz staci v dartiu otevrit http://**IP**:8080/
+Je samozrejme nutne mit povoleny iptables a serve pusteny na spravnych IP:
 
 ```
 # iptables -I INPUT -p tcp --dport 8080 -j ACCEPT
