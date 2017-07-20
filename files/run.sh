@@ -6,5 +6,4 @@ if [ -d /home/user/ ]; then
   chown -R user:user /home/user/
 fi
 
-export DART_FLAGS='--checked'
-exec su -ls "/bin/bash" -c "/opt/dartium/chrome $ARGS $URL" user
+exec su -ls "/bin/bash" -c "DART_FLAGS='--checked' /opt/dartium/chrome $ARGS $URL" user
